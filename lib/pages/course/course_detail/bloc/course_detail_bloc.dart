@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+
 import 'course_detail_event.dart';
 import 'course_detail_state.dart';
 

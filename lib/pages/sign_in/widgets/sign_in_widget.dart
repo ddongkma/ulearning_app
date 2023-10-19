@@ -75,6 +75,7 @@ Widget buildTextField(String hintText, String textType, String iconName,
           height: 50.h,
           child: TextField(
             onChanged: (value)=> func!(value) ,
+            maxLines: 1,
             keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
                 hintText: hintText,

@@ -1,4 +1,15 @@
-part of 'home_bloc.dart';
+import 'package:ulearning_app/common/entities/course.dart';
 
-@immutable
-abstract class HomeEvent {}
+abstract class HomeEvent {
+  const HomeEvent();
+}
+
+class HomeDotsEvent extends HomeEvent{
+  final int index;
+  const HomeDotsEvent(this.index):super();
+}
+
+class HomePageCourseItemEvent extends HomeEvent{
+  final List<CourseItem> courseItem;
+  const HomePageCourseItemEvent(this.courseItem);
+}

@@ -1,16 +1,16 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'course_detail_event.dart';
-import 'course_detail_state.dart';
+import 'course_event.dart';
+import 'course_state.dart';
 
-class CourseDetailBloc extends Bloc<CourseDetailEvents, CourseDetailState> {
-  CourseDetailBloc() : super(const CourseDetailState()) {
-    on<TriggerCourseDetailEvent>(_triggerCourseDetailEvent);
+class CourseBloc extends Bloc<CourseEvents, CourseState> {
+  CourseBloc() : super(const CourseState()) {
+    on<TriggerCourseEvent>(_triggerCourseEvent);
   }
 
-  FutureOr<void> _triggerCourseDetailEvent(
-      TriggerCourseDetailEvent event, Emitter<CourseDetailState> emit) {
+  FutureOr<void> _triggerCourseEvent(
+      TriggerCourseEvent event, Emitter<CourseState> emit) {
     emit(state.copyWith(courseItem: event.courseItem));
   }
 }

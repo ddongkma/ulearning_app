@@ -1,10 +1,10 @@
 
 import 'package:ulearning_app/common/entities/course.dart';
 
-abstract class CourseDetailEvents {
-  const CourseDetailEvents();
+abstract class CourseEvents {
+  const CourseEvents();
 }
-class TriggerCourseDetailEvent extends CourseDetailEvents{
-  const TriggerCourseDetailEvent(this.courseItem):super();
+class TriggerCourseEvent extends CourseEvents{
+  const TriggerCourseEvent(this.courseItem):super();
   final CourseItem courseItem;
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/values/colors.dart';
-import 'package:ulearning_app/pages/application/application_widgets.dart';
+import 'package:ulearning_app/pages/application/widgets/application_widgets.dart';
+import 'package:ulearning_app/pages/application/bloc/app_bloc.dart';
+import 'package:ulearning_app/pages/application/bloc/app_event.dart';
+import 'package:ulearning_app/pages/application/bloc/app_state.dart';
 
 class ApplicationPage extends StatefulWidget {
   const ApplicationPage({super.key});
@@ -11,79 +15,41 @@ class ApplicationPage extends StatefulWidget {
 }
 
 class _ApplicationPageState extends State<ApplicationPage> {
-  int _index = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SafeArea(
-          child: Scaffold(
-        body: buildPage(_index),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _index,
+    return BlocBuilder<AppBloc, AppState>(builder: (context, state) {
+    return SafeArea(
+        child: Scaffold(
+      body: buildPage(state.index),
+      bottomNavigationBar: Container(
+        width: 375.w,
+        height: 58.h,
+        decoration: BoxDecoration(
+          color: AppColors.primaryElement,
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(20.h),topRight: Radius.circular(20.h)),
+          boxShadow: [
+            BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 1,
+              blurRadius: 1
+          )
+          ]
+        ),
+        child: BottomNavigationBar(
+          currentIndex: state.index,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           onTap: (value) => {
-            setState((){
-              _index= value;
-            })
+            context.read<AppBloc>().add(TriggerAppEvent(value)),
           },
           elevation: 0,
-          items: [
-            BottomNavigationBarItem(
-                label: "home",
-                icon: SizedBox(
-                  width: 15.w,
-                  height: 15.h,
-                  child: Image.asset("assets/icons/home.png"),
-                ),
-              activeIcon:SizedBox(
-                  width: 15.w,
-                  height: 15.h,
-                child: Image.asset("assets/icons/home.png",color: AppColors.primaryElement,),
-            )),
-            BottomNavigationBarItem(
-                label: "search",
-                icon: SizedBox(
-                  width: 15.w,
-                  height: 15.h,
-                  child: Image.asset("assets/icons/search.png"),
-                ),
-                activeIcon:SizedBox(
-                  width: 15.w,
-                  height: 15.h,
-                  child: Image.asset("assets/icons/search.png",color: AppColors.primaryElement,),
-                )
-            ),
-            BottomNavigationBarItem(
-                label: "search",
-                icon: SizedBox(
-                  width: 15.w,
-                  height: 15.h,
-                  child: Image.asset("assets/icons/play-circle1.png"),
-                ),
-                activeIcon:SizedBox(
-                  width: 15.w,
-                  height: 15.h,
-                  child: Image.asset("assets/icons/play-circle1.png",color: AppColors.primaryElement,),
-                )
-            ),
-            BottomNavigationBarItem(
-                label: "search",
-                icon: SizedBox(
-                  width: 15.w,
-                  height: 15.h,
-                  child: Image.asset("assets/icons/plus.png"),
-                ),
-                activeIcon:SizedBox(
-                  width: 15.w,
-                  height: 15.h,
-                  child: Image.asset("assets/icons/home.png",color: AppColors.primaryElement,),
-                )
-            )
-          ],
+          items:bottomTabs ,
         ),
-      )),
-    );
+      ),
+    ));
+  },
+);
   }
 }

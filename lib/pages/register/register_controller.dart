@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ulearning_app/common/widgets/flutter_toast.dart';
 import 'package:ulearning_app/pages/register/bloc/register_bloc.dart';
 
+import '../../common/values/constant.dart';
+
 class RegisterController {
   final BuildContext context;
   const RegisterController(this.context);
@@ -37,10 +39,14 @@ class RegisterController {
       if (credential.user != null) {
         await credential.user?.sendEmailVerification();
         await credential.user?.updateDisplayName(userName);
+        String photoUrl= "uploads/ky1.jpg";
+        await credential.user?.updatePhotoURL(photoUrl);
         toastInfo(
             msg:
                 "An email has been sent to your register email. To activate it please check your email box and click on the link.");
-        Navigator.of(context).pop();
+        if(context.mounted){
+          Navigator.of(context).pop();
+        }
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
