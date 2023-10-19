@@ -1,0 +1,4 @@
+
+class SettingPageState {
+  const SettingPageState();
+}
