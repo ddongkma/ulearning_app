@@ -1,11 +1,10 @@
-import 'package:ulearning_app/common/entities/course.dart';
 import 'package:ulearning_app/common/entities/entities.dart';
 import 'package:ulearning_app/common/utils/http_util.dart';
 
 class CourseApi {
   static Future<CourseListResponseEntity> courseList() async {
     var response = await HttpUtil().post('api/courseList');
-    print(' course ${response}');
+    print(' course $response');
     return CourseListResponseEntity.fromJson(response);
   }
   static Future<CourseDetailResponseEntity> courseDetail( { CourseRequestEntity? params}) async {

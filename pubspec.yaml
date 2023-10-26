@@ -46,6 +46,7 @@ dependencies:
   keyboard_dismisser: ^3.0.0
   flutter_easyloading: ^3.0.5
   dio: ^5.3.3
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

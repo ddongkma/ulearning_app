@@ -17,6 +17,8 @@ import 'package:ulearning_app/pages/profile/settings/bloc/setting_page_bloc.dart
 import 'package:ulearning_app/pages/profile/settings/setting_page.dart';
 import 'package:ulearning_app/pages/register/bloc/register_bloc.dart';
 import 'package:ulearning_app/pages/register/register.dart';
+import 'package:ulearning_app/pages/search/bloc/search_bloc.dart';
+import 'package:ulearning_app/pages/search/search.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:ulearning_app/pages/sign_in/sign_in.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_bloc.dart';
@@ -66,6 +68,11 @@ class AppPages {
           route: PageRoutes.COURSE_DETAIL,
           page: const CourseDetail(),
           bloc: BlocProvider(create: (_)=> CourseDetailBloc())
+      ),
+      PageEntity(
+          route: PageRoutes.SEARCHPAGE,
+          page: const SearchPage(),
+          bloc: BlocProvider(create: (_)=> SearchBloc())
       ),
     ];
   }

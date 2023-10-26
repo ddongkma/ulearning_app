@@ -9,5 +9,7 @@ class PageRoutes {
   static const String PROFILEPAGE= '/profile';
   static const String SETTINGSPAGE= '/setting';
   static const String COURSE_DETAIL= '/course_detail';
+  static const String SEARCHPAGE= '/search';
+
 
 }
