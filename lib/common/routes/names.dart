@@ -11,5 +11,4 @@ class PageRoutes {
   static const String COURSE_DETAIL= '/course_detail';
   static const String SEARCHPAGE= '/search';
 
-
 }

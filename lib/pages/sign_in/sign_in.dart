@@ -31,7 +31,8 @@ class _SignInState extends State<SignIn> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   buildThirdPartyLogin(context),
-                  Center(child: reusableText("Or use your email account login")),
+                  Center(
+                      child: reusableText("Or use your email account login")),
                   Container(
                     margin: EdgeInsets.only(top: 66.h),
                     padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -41,18 +42,20 @@ class _SignInState extends State<SignIn> {
                         reusableText("Email"),
                         SizedBox(height: 5.h),
                         buildTextField(
-                            "Enter your email address", "email", "user", (value) {
+                            "Enter your email address", "email", "user",
+                            (value) {
                           context.read<SignInBloc>().add(EmailEvent(value));
                         }),
                         reusableText("Password"),
                         SizedBox(height: 5.h),
-                        buildTextField("Enter your password", "password", "lock",
-                            (value) {
+                        buildTextField(
+                            "Enter your password", "password", "lock", (value) {
                           context.read<SignInBloc>().add(PasswordEvent(value));
                         }),
                         forgotPassword(),
                         buildLogInAndRegButton("Log in", "login", () {
-                          SignInController(context: context).handleSignIn('email');
+                          SignInController(context: context)
+                              .handleSignIn('email');
                         }),
                         buildLogInAndRegButton("Register", "register", () {
                           Navigator.of(context).pushNamed("/register");

@@ -7,11 +7,11 @@ import 'package:ulearning_app/pages/search/search.dart';
 
 Widget buildPage(int index) {
   List<Widget> _widgets = [
-    HomePage(),
-    SearchPage(),
-    Center(child: Text("play")),
-    Center(child: Text("chat")),
-    ProfilePage(),
+    const HomePage(),
+    const SearchPage(),
+    const Center(child: Text("play")),
+    const Center(child: Text("chat")),
+    const ProfilePage(),
   ];
   return _widgets[index];
 }

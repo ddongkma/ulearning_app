@@ -44,14 +44,14 @@ class _SearchPageState extends State<SearchPage> {
               body: Container(
                   margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
                   child: Column(children: [
-                    searchView(),
+                    searchView(context,state ),
                     SizedBox(height: 15.h),
                     Expanded(
                       child: ListView.builder(
-                          itemCount: state.courseItem.length,
+                          itemCount: state.searchItem.length,
                           // shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return courseSearchList(state.courseItem[index].name.toString(),state.courseItem[index].thumbnail.toString(),);
+                            return courseSearchList(state.searchItem[index].name.toString(),state.searchItem[index].thumbnail.toString(),);
                           }),
                     )
                   ]))),

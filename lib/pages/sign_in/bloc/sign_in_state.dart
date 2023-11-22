@@ -8,5 +8,4 @@ class SignInState {
         email: email ?? this.email,
         password: password ?? this.password);
   }
-
 }

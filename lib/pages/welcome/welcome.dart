@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/values/constant.dart';
 import 'package:ulearning_app/global.dart';
-import 'package:ulearning_app/pages/home/home_page.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_bloc.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_event.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_state.dart';
@@ -119,10 +118,11 @@ class _WelcomeState extends State<Welcome> {
               _pageController.animateToPage(index,
                   duration: Duration(milliseconds: 400), curve: Curves.linear);
             } else {
-              Global.storageService.setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
+              Global.storageService
+                  .setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
               // Navigator.of(context).push(MaterialPageRoute(builder: (_)=> HomePage()));
               Navigator.of(context)
-                  .pushNamedAndRemoveUntil("/signin", (route) => false );
+                  .pushNamedAndRemoveUntil("/signin", (route) => false);
             }
           },
           child: Container(

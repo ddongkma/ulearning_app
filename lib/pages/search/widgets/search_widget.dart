@@ -1,11 +1,16 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/values/constant.dart';
 import 'package:ulearning_app/common/widgets/base_text_widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ulearning_app/pages/search/bloc/search_state.dart';
+import 'package:ulearning_app/pages/search/search_controller.dart';
 
 import '../../../common/values/colors.dart';
-
+// late SearchControllerPage searchController ;
+//   searchController = SearchControllerPage();
 AppBar buildAppBar() {
   return AppBar(
     elevation: 0,
@@ -31,7 +36,9 @@ AppBar buildAppBar() {
   );
 }
 
-Widget searchView() {
+Widget searchView(BuildContext context,SearchState state) {
+  late SearchControllerPage searchController ;
+  searchController = SearchControllerPage(context);
   return Container(
     margin: EdgeInsets.only(top: 25.h),
     child: Row(
@@ -55,7 +62,9 @@ Widget searchView() {
                 width: 240.w,
                 height: 40.h,
                 child: TextField(
-                  // onChanged: (value)=> func!(value) ,
+                  onChanged: (value){
+                    searchController.filterCourses(value,state);
+                  },
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.fromLTRB(5, 5, 5, 5),

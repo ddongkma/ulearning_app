@@ -21,6 +21,7 @@ class HomeController{
       var result = await CourseApi.courseList();
       if(result.code==200){
         if(context.mounted){
+          print(result);
           context.read<HomeBloc>().add(HomePageCourseItemEvent(result.data!));
         }
       }else{
