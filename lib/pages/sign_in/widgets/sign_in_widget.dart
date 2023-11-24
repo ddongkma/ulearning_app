@@ -16,23 +16,25 @@ AppBar builderAppbar(String title) {
   );
 }
 
-Widget buildThirdPartyLogin(BuildContext context) {
+Widget buildThirdPartyLogin(BuildContext context,void Function()? func) {
   return Container(
     margin: EdgeInsets.only(top: 25.h, bottom: 25.h),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _reusableIcon("google"),
-        _reusableIcon("apple"),
-        _reusableIcon("facebook"),
+        _reusableIcon("google",func),
+        _reusableIcon("apple",func),
+        _reusableIcon("facebook",func),
       ],
     ),
   );
 }
 
-Widget _reusableIcon(String iconName) {
+Widget _reusableIcon(String iconName ,void Function()? func) {
   return GestureDetector(
-    onTap: () {},
+    onTap: () {
+
+    },
     child: SizedBox(
       width: 40.w,
       height: 40.w,

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ulearning_app/common/entities/user.dart';
 import 'package:ulearning_app/common/routes/names.dart';
 import 'package:ulearning_app/common/values/constant.dart';
@@ -16,8 +17,27 @@ import '../home/home_controller.dart';
 
 class SignInController {
   final BuildContext context;
+  final googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? _user;
+  GoogleSignInAccount get user=> _user!;
+  SignInController({required this.context});
 
-  const SignInController({required this.context});
+  Future googleLogin() async {
+    final googleUser = await googleSignIn.signIn();
+    if(googleUser == null) return;
+    _user = googleUser;
+    print('${_user?.displayName??'rỗng'} ');
+    final  googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken
+    );
+    await FirebaseAuth.instance.signInWithCredential(credential);
+    // if (context.mounted) {
+    //   await HomeController(context: context).init();
+    // }
+  }
+  
 
   Future<void> handleSignIn(String type) async {
     try {

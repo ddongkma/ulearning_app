@@ -47,6 +47,9 @@ dependencies:
   flutter_easyloading: ^3.0.5
   dio: ^5.3.3
   flutter_rating_bar: ^4.0.1
+  http:
+  google_sign_in: ^5.1.0
+  font_awesome_flutter:
 
 dev_dependencies:
   flutter_test:
