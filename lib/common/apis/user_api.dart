@@ -1,13 +1,19 @@
 import 'package:ulearning_app/common/entities/entities.dart';
 import 'package:ulearning_app/common/utils/http_util.dart';
 
+import '../entities/staff.dart';
+
 class UserAPI{
-    static login({LoginRequestEntity? params}) async {
+    static login({LoginRequest? params}) async {
       var response = await HttpUtil().post(
-      'api/login',
-    queryParameters: params?.toJson()
+      'login',
+    data: params?.toJson1()
       );
       print("response: ${response}");
-      return UserLoginResponseEntity.fromJson(response);
+      if (response != null && response['staff_id'] != null) {
+        return LoginRequest.fromJson(response);
+      } else {
+        return null;
+      }
     }
 }

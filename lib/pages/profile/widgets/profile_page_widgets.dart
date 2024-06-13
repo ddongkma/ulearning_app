@@ -143,10 +143,10 @@ Widget buildListContax() {
 
 var imageInfors = <String,String>{
   "Settings" : "settings.png",
-  'Payment details' : "credit-card.png",
-  'Achievement' : 'award.png',
-  'Love' : 'heart(1).png',
-  'Reminders' : 'cube.png'
+  // 'Payment details' : "credit-card.png",
+  // 'Achievement' : 'award.png',
+  // 'Love' : 'heart(1).png',
+  // 'Reminders' : 'cube.png'
 };
 Widget buildListView(BuildContext context) {
   return Column(

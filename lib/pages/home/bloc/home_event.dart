@@ -1,4 +1,5 @@
-import 'package:ulearning_app/common/entities/course.dart';
+
+import '../../../common/entities/shop.dart';
 
 abstract class HomeEvent {
   const HomeEvent();
@@ -9,7 +10,7 @@ class HomeDotsEvent extends HomeEvent{
   const HomeDotsEvent(this.index):super();
 }
 
-class HomePageCourseItemEvent extends HomeEvent{
-  final List<CourseItem> courseItem;
-  const HomePageCourseItemEvent(this.courseItem);
+class HomePageGetBranchEvent extends HomeEvent{
+  final List<BranchDetailEntity> branchs;
+  const HomePageGetBranchEvent(this.branchs);
 }

@@ -10,6 +10,7 @@ class LoginRequestEntity {
   String? avatar;
   String? open_id;
   int? online;
+  String? password;
 
   LoginRequestEntity({
     this.type,
@@ -20,6 +21,7 @@ class LoginRequestEntity {
     this.avatar,
     this.open_id,
     this.online,
+    this.password
   });
 
   Map<String, dynamic> toJson() => {
@@ -31,6 +33,7 @@ class LoginRequestEntity {
     "avatar": avatar,
     "open_id": open_id,
     "online": online,
+    "password" : password
   };
 }
 //api post response msg

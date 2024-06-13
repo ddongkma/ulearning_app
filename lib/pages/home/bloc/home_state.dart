@@ -1,14 +1,16 @@
 
 import 'package:ulearning_app/common/entities/course.dart';
 
+import '../../../common/entities/shop.dart';
+
 class HomeState {
 
-  const HomeState({this.index=0,this.courseItem = const <CourseItem>[]});
+  const HomeState({this.index=0,this.branchs = const <BranchDetailEntity>[]});
    final int index;
-   final List<CourseItem> courseItem ;
-  HomeState copyWith({int? index, List<CourseItem>? courseItem}){
+   final List<BranchDetailEntity> branchs ;
+  HomeState copyWith({int? index, List<BranchDetailEntity>? branchs}){
     return  HomeState(
-      courseItem: courseItem??this.courseItem,
+      branchs: branchs??this.branchs,
       index:index??this.index
     );
   }

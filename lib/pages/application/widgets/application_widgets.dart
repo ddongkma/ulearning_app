@@ -9,8 +9,8 @@ Widget buildPage(int index) {
   List<Widget> _widgets = [
     const HomePage(),
     const SearchPage(),
-    const Center(child: Text("play")),
-    const Center(child: Text("chat")),
+    const Center(child: Text("CC Audit")),
+    const Center(child: Text("History")),
     const ProfilePage(),
   ];
   return _widgets[index];
@@ -48,32 +48,32 @@ var bottomTabs = [
         ),
       )),
   BottomNavigationBarItem(
-      label: "play",
+      label: "audit",
       icon: SizedBox(
         width: 15.w,
         height: 15.h,
-        child: Image.asset("assets/icons/play-circle1.png",),
+        child: Image.asset("assets/icons/profile.png",),
       ),
       activeIcon: SizedBox(
         width: 15.w,
         height: 15.h,
         child: Image.asset(
-          "assets/icons/play-circle1.png",
+          "assets/icons/profile.png",
           color: AppColors.primaryElement,
         ),
       )),
   BottomNavigationBarItem(
-      label: "chat",
+      label: "history",
       icon: SizedBox(
         width: 15.w,
         height: 15.h,
-        child: Image.asset("assets/icons/message-circle.png"),
+        child: Image.asset("assets/icons/history_1.png"),
       ),
       activeIcon: SizedBox(
         width: 15.w,
         height: 15.h,
         child: Image.asset(
-          "assets/icons/message-circle.png",
+          "assets/icons/history_1.png",
           color: AppColors.primaryElement,
         ),
       )),

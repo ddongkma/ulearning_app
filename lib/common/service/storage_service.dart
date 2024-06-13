@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulearning_app/common/entities/entities.dart';
 import 'package:ulearning_app/common/values/constant.dart';
 
+import '../entities/staff.dart';
+
 class StorageService {
   late final SharedPreferences _prefs;
   Future<StorageService> init() async {
@@ -31,10 +33,10 @@ class StorageService {
     return _prefs.getString(AppConstants.STORAGE_USER_TOKEN_KEY)??"";
   }
 
-  UserItem? getUserProfile(){
+  LoginRequest? getUserProfile(){
     var profileOffline =  _prefs.getString(AppConstants.STORAGE_USER_PROFILE_KEY)??"";
     if(profileOffline.isNotEmpty){
-        return UserItem.fromJson(jsonDecode(profileOffline));
+        return LoginRequest.fromJson(jsonDecode(profileOffline));
     }
     return null;
   }

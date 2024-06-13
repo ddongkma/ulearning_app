@@ -68,7 +68,7 @@ Widget searchView(BuildContext context,SearchState state) {
                   keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                      hintText: "Search your couese...",
+                      hintText: "Search profile...",
                       border: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent)),
                       enabledBorder: const OutlineInputBorder(

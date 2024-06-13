@@ -1,3 +1,4 @@
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ AppBar buildAppBar(String avatar) {
                   borderRadius: BorderRadius.circular(10.w),
                   image: DecorationImage(
                     image:
-                        NetworkImage("${AppConstants.SERVER_API_URL}$avatar"),
+                        NetworkImage("https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"),
                   )),
             ),
           )
@@ -57,7 +58,7 @@ Widget homePageText(String text,
   );
 }
 
-Widget searchView() {
+Widget searchView(BuildContext context) {
   return Row(
     children: [
       Container(
@@ -83,7 +84,7 @@ Widget searchView() {
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                    hintText: "Search your couese...",
+                    hintText: "Search your profile...",
                     border: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent)),
                     enabledBorder: const OutlineInputBorder(
@@ -108,6 +109,9 @@ Widget searchView() {
         ),
       ),
       GestureDetector(
+        onTap: () {
+          _showFilterOptions(context);
+        },
         child: Container(
           width: 40.w,
           height: 40.h,
@@ -119,6 +123,98 @@ Widget searchView() {
         ),
       )
     ],
+  );
+}
+
+void _showFilterOptions(BuildContext context) {
+  TextEditingController shopcodeController = TextEditingController();
+  TextEditingController isdnController = TextEditingController();
+  String? selectedBranch;
+  String? selectedStatus;
+
+  List<String> branches = ['Branch 1', 'Branch 2', 'Branch 3']; // Danh sách các branch
+  List<String> statuses = ['Active', 'Inactive', 'Pending']; // Danh sách các status
+
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.all(16.0),
+            height: 500.h,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Search profile',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextField(
+                  controller: shopcodeController,
+                  decoration: InputDecoration(labelText: 'SHOPCODE'),
+                ),
+                TextField(
+                  controller: isdnController,
+                  decoration: InputDecoration(labelText: 'ISDN'),
+                ),
+                DropdownButton<String>(
+                  hint: Text('Select Branch'),
+                  value: selectedBranch,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedBranch = newValue!;
+                    });
+                  },
+                  items: branches.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+                DropdownButton<String>(
+                  hint: Text('Select Status'),
+                  value: selectedStatus,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedStatus = newValue!;
+                    });
+                  },
+                  items: statuses.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Xử lý dữ liệu tìm kiếm
+                    String shopcode = shopcodeController.text;
+                    String isdn = isdnController.text;
+                    String branch = selectedBranch ?? '';
+                    String status = selectedStatus ?? '';
+
+                    print('Shopcode: $shopcode');
+                    print('ISDN: $isdn');
+                    print('Branch: $branch');
+                    print('Status: $status');
+
+                    // Đóng BottomSheet
+                    Navigator.pop(context);
+                  },
+                  child: Text('Search'),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    },
   );
 }
 
@@ -177,7 +273,7 @@ Widget menuView() {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            reusableText("Choose your course", fontSize: 20),
+            reusableText("Results", fontSize: 20),
             GestureDetector(
                 child: reusableText("See all",
                     color: AppColors.primaryThreeElementText, fontSize: 10)),

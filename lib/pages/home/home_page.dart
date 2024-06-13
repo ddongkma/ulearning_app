@@ -9,6 +9,7 @@ import 'package:ulearning_app/pages/home/bloc/home_state.dart';
 import 'package:ulearning_app/pages/home/home_controller.dart';
 import 'package:ulearning_app/pages/home/widgets/home_page_widgets.dart';
 
+import '../../common/entities/staff.dart';
 import '../../common/routes/names.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,34 +20,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late UserItem userProfile;
+  late LoginRequest userProfile;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // _homeController = HomeController(context: context);
-    // _homeController.init();
   }
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     userProfile = HomeController(context: context).userProfile!;
-
+    print("userProfile ${userProfile.fullName}");
   }
 
   @override
   Widget build(BuildContext context) {
     return KeyboardDismisser(
-       child: userProfile != null
-          ? Scaffold(
+        child: userProfile != null
+            ?  Scaffold(
               backgroundColor: Colors.white,
-              appBar: buildAppBar(userProfile!.avatar!),
+              appBar: buildAppBar(userProfile!.fullName!),
               body: BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
-                  if(state.courseItem.isEmpty){
-                    HomeController(context: context).init();
-                  }
+                  // if(state.courseItem.isEmpty){
+                  //   HomeController(context: context).init();
+                  // }
                   return Container(
                     margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
                     child: CustomScrollView(
@@ -59,12 +58,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                         SliverToBoxAdapter(
                           child: homePageText(
-                              userProfile!.name!,
+                              "${userProfile.fullName}",
                               top: 5),
                         ),
                         SliverPadding(padding: EdgeInsets.only(top: 20.h)),
                         SliverToBoxAdapter(
-                          child: searchView(),
+                          child: searchView(context),
                         ),
                         SliverToBoxAdapter(
                           child: slidersView(context, state),
@@ -72,39 +71,39 @@ class _HomePageState extends State<HomePage> {
                         SliverToBoxAdapter(
                           child: menuView(),
                         ),
-                        SliverPadding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 18.h, horizontal: 0.w),
-                            sliver: SliverGrid(
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 15,
-                                crossAxisSpacing: 15,
-                                childAspectRatio: 3 / 2,
-                              ),
-                              delegate: SliverChildBuilderDelegate(
-                                  childCount: state.courseItem.length,
-                                  (context, index) {
-                                return GestureDetector(
-                                  onTap: (){
-                                    Navigator.of(context).pushNamed(PageRoutes.COURSE_DETAIL,
-                                      arguments: {
-                                      "id": state.courseItem.elementAt(index).id
-                                      }
-                                    );
-                                  },
-                                  child: courseGrid(state.courseItem[index]),
-                                );
-                              }),
-                            )),
+                        // SliverPadding(
+                        //     padding: EdgeInsets.symmetric(
+                        //         vertical: 18.h, horizontal: 0.w),
+                        //     sliver: SliverGrid(
+                        //       gridDelegate:
+                        //           const SliverGridDelegateWithFixedCrossAxisCount(
+                        //         crossAxisCount: 2,
+                        //         mainAxisSpacing: 15,
+                        //         crossAxisSpacing: 15,
+                        //         childAspectRatio: 3 / 2,
+                        //       ),
+                        //       delegate: SliverChildBuilderDelegate(
+                        //           childCount: state.courseItem.length,
+                        //           (context, index) {
+                        //         return GestureDetector(
+                        //           onTap: (){
+                        //             Navigator.of(context).pushNamed(PageRoutes.COURSE_DETAIL,
+                        //               arguments: {
+                        //               "id": state.courseItem.elementAt(index).id
+                        //               }
+                        //             );
+                        //           },
+                        //           child: courseGrid(state.courseItem[index]),
+                        //         );
+                        //       }),
+                        //     )),
                       ],
                     ),
                   );
                 },
               ),
             )
-          : Container(),
+          :   Container(),
     );
   }
 }

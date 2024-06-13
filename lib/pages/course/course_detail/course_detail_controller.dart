@@ -5,7 +5,7 @@ import 'package:ulearning_app/common/entities/course.dart';
 import 'package:ulearning_app/common/widgets/flutter_toast.dart';
 import 'package:ulearning_app/pages/course/course_detail/bloc/course_detail_bloc.dart';
 
-import '../../../common/apis/course_api.dart';
+import '../../../common/apis/profile.dart';
 import 'bloc/course_detail_event.dart';
 
 class CourseDetailController{

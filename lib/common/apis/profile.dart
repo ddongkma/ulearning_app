@@ -1,11 +1,15 @@
 import 'package:ulearning_app/common/entities/entities.dart';
 import 'package:ulearning_app/common/utils/http_util.dart';
 
+import '../entities/profile.dart';
+
 class CourseApi {
-   static Future<CourseListResponseEntity> courseList() async {
-    var response = await HttpUtil().post('api/courseList');
-    print(' course $response');
-    return CourseListResponseEntity.fromJson(response);
+   static Future<SearchProfileResponse> searchProfile({SearchProfileRequest? params}) async {
+    var response = await HttpUtil().get('api/audit/profile/search',
+        data: params?.toJson()
+    );
+    print(' search profile : $response');
+    return SearchProfileResponse.fromJson(response);
   }
   static Future<CourseDetailResponseEntity> courseDetail( { CourseRequestEntity? params}) async {
     var response = await HttpUtil().post('api/courseDetail',
@@ -20,8 +24,6 @@ class CourseApi {
     );
     return BaseResponseEntity.fromJson(response);
   }
-
-
-
 }
+
 

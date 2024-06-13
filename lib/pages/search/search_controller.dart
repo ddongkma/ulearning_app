@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ulearning_app/common/entities/course.dart';
+import 'package:ulearning_app/common/entities/profile.dart';
 import 'package:ulearning_app/pages/search/bloc/search_bloc.dart';
 import 'package:ulearning_app/pages/search/bloc/search_event.dart';
 import 'package:ulearning_app/pages/search/bloc/search_state.dart';
 
-import '../../common/apis/course_api.dart';
+import '../../common/apis/profile.dart';
 
 class SearchControllerPage{
   final BuildContext context;
@@ -14,13 +15,14 @@ class SearchControllerPage{
 
   List<CourseItem> get filteredItems => _filteredItems;
   Future<void> init() async {
-      var result = await CourseApi.courseList();
-      if(result.code==200){
-        if(context.mounted){
-          context.read<SearchBloc>().add(TestCourseItemEvent(result.data!));
-        }
+      SearchProfileRequest searchProfileRequest = SearchProfileRequest();
+      var result = await CourseApi.searchProfile(params: searchProfileRequest);
+      if(result.profiles!.isNotEmpty ){
+        // if(context.mounted){
+        //   context.read<SearchBloc>().add(TestCourseItemEvent(result.profiles!));
+        // }
       }else{
-        print(result.code);
+        print(result.profiles);
       }
 
     }

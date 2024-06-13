@@ -7,7 +7,7 @@ import 'package:ulearning_app/pages/home/bloc/home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super( const HomeState()) {
     on<HomeDotsEvent>(_homeDotsEvent);
-    on<HomePageCourseItemEvent>(_homePageCourseItemEvent);
+    on<HomePageGetBranchEvent>(_homePageCourseItemEvent);
   }
 
   FutureOr<void> _homeDotsEvent(HomeDotsEvent event, Emitter<HomeState> emit) {
@@ -15,7 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _homePageCourseItemEvent(
-      HomePageCourseItemEvent event, Emitter<HomeState> emit) {
-    emit(state.copyWith(courseItem: event.courseItem));
+      HomePageGetBranchEvent event, Emitter<HomeState> emit) {
+    emit(state.copyWith(branchs: event.branchs));
   }
 }
